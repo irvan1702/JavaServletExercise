@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<title>Simple CRUD</title>
+</head>
+
+<body>
+	<h3>List students</h3>
+	<h:form rendered="#{not empty simpleCrudBean.list}">
+		<h:dataTable value="#{simpleCrudBean.list}" var="item">
+			<h:column><f:facet name="header">ID</f:facet>#{item.id}</h:column>
+			<h:column><f:facet name="header">ISBN</f:facet>#{item.isbn}</h:column>
+			<h:column><f:facet name="header">Title</f:facet>#{item.title}</h:column>
+			<h:column><f:facet name="header">Author</f:facet>#{item.author}</h:column>
+			<h:column><f:facet name="header">Publisher</f:facet>#{item.publisher}</h:column>
+			<h:column><f:facet name="header">Price</f:facet>#{item.price}</h:column>
+			<h:column>
+				<h:commandButton value="edit" action="#{simpleCrudBeanBook.edit(item)}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="delete" action="#{simpleCrudBeanBook.delete(item)}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+	<h:panelGroup rendered="#{empty simpleCrudBeanBook.list}">
+		<p>No Book! Please add Book.</p>
+	</h:panelGroup>
+
+	<h:panelGroup rendered="#{!simpleCrudBeanBook.edit}">
+		<h3>Add Book</h3>
+		<h:form>
+			<p>Name: <h:inputText value="#{simpleCrudBeanBook.item.name}" /></p>
+			<p>
+				<h:commandButton value="add" action="#{simpleCrudBeanBook.add}" />
+				<h:commandButton value="reset" action="#{simpleCrudBeanBook.resetAdd}" />
+			</p>
+		</h:form>
+	</h:panelGroup>
+	
+	<h:panelGroup rendered="#{simpleCrudBeanBook.edit}">
+		<h3>Edit student #{simpleCrudBean.item.id}</h3>
+		<h:form>
+			<p>Name: <h:inputText value="#{simpleCrudBean.item.name}" /></p>
+			<p>
+				<h:commandButton value="save" action="#{simpleCrudBeanBook.saveEdit}" />
+				<h:commandButton value="cancel" action="#{simpleCrudBeanBook.cancelEdit}" />
+			</p>
+		</h:form>
+	</h:panelGroup>
+	<p>
+		<a href="#{appUrlStore.baseUrl}">Go back to index</a>
+	</p>
+</body>
+</html>

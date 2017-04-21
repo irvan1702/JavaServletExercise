@@ -1,0 +1,37 @@
+package com.song.jsf.example;
+
+import java.io.Serializable;
+
+public class Book implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	private int id;
+	private long isbn;
+	private String title;
+	private String author;
+	private String publisher;
+	private double price;
+
+	public Book() {
+	}
+
+	@Override
+	public Book clone() {
+		return new Book(id, name);
+	}
+
+	public Book(int id, long isbn, String title, String author, String publisher, double price) {
+		super();
+		this.id = id;
+		this.isbn = isbn;
+		this.title = title;
+		this.author = author;
+		this.publisher = publisher;
+		this.price = price;
+	}
+
+	public void restore(Book book) {
+		this.id = book.getId();
+		this.name = book.getName();
+	}
+}

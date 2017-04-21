@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<title>Refresh-safe CRUD</title>
+</head>
+
+<body>
+	<h3>List Books</h3>
+	<h:form rendered="#{not empty freshsafeCrudBeanBook.list}">
+		<h:dataTable value="#{freshsafeCrudBeanBook.list}" var="item">
+			<h:column>
+				<f:facet name="header">ID</f:facet>#{item.id}</h:column>
+			<h:column>
+				<f:facet name="header">ISBN</f:facet>#{item.isbn}</h:column>
+			<h:column>
+				<f:facet name="header">Title</f:facet>#{item.title}</h:column>
+			<h:column>
+				<f:facet name="header">Author</f:facet>#{item.author}</h:column>
+			<h:column>
+				<f:facet name="header">Publisher</f:facet>#{item.publisher}</h:column>
+			<h:column>
+				<f:facet name="header">Price</f:facet>#{item.price}</h:column>
+			<h:column>
+				<h:commandButton value="edit" action="#{freshsafeCrudBeanBook.edit(item)}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="delete" action="#{freshsafeCrudBeanBook.delete(item)}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+	<h:panelGroup rendered="#{empty freshsafeCrudBeanBook.list}">
+		<p>No Book! Please add Book.</p>
+	</h:panelGroup>
+
+	<h:panelGroup rendered="#{!freshsafeCrudBeanBook.edit}">
+		<h3>Add student</h3>
+		<h:form>
+			<p>
+				ISBN:
+				<h:inputText value="#{freshCrudBeanBook.item.isbn}" />
+			</p>
+			<p>
+				Title:
+				<h:inputText value="#{freshCrudBeanBook.item.title}" />
+			</p>
+			<p>
+				Author:
+				<h:inputText value="#{freshCrudBeanBook.item.author}" />
+			</p>
+			<p>
+				Publisher:
+				<h:inputText value="#{freshCrudBeanBook.item.publisher}" />
+			</p>
+			<p>
+				Price:
+				<h:inputText value="#{freshCrudBeanBook.item.price}" />
+			</p>
+			<p>
+				<h:commandButton value="add" action="#{freshsafeCrudBeanBook.add}" />
+				<h:commandButton value="reset" action="#{freshsafeCrudBeanBook.resetAdd}" />
+			</p>
+		</h:form>
+	</h:panelGroup>
+	
+	<h:panelGroup rendered="#{freshsafeCrudBeanBook.edit}">
+		<h3>Edit student #{bean.item.id}</h3>
+		<h:form>
+			<p>Name: <h:inputText value="#{freshsafeCrudBean.item.name}" /></p>
+			<p>
+				<h:commandButton value="save" action="#{freshsafeCrudBean.saveEdit}" />
+				<h:commandButton value="cancel" action="#{freshsafeCrudBean.cancelEdit}" />
+			</p>
+		</h:form>
+	</h:panelGroup>
+	<p>
+		<a href="#{appUrlStore.baseUrl}">Go back to index</a>
+	</p>
+</body>
+</html>

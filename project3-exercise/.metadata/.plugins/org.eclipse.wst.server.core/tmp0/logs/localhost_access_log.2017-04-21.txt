@@ -1,0 +1,4 @@
+127.0.0.1 - - [21/Apr/2017:08:33:24 +0700] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [21/Apr/2017:08:33:25 +0700] "GET /SampleServer/ HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [21/Apr/2017:08:33:40 +0700] "POST /SampleServer/StudentServlet?name=aaa HTTP/1.1" 200 65
+0:0:0:0:0:0:0:1 - - [21/Apr/2017:08:34:46 +0700] "POST /SampleServer/StudentServlet?id=20 HTTP/1.1" 200 65
